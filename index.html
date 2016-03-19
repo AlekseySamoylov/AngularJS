@@ -1,0 +1,131 @@
+<!doctype html>
+<html ng-app="store" lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Алексей Самойлов</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+
+</head>
+<body role="document">
+
+<section ng-controller="PanelController as panel">
+    <ul class="nav nav-pills">
+        <li ng-class="{ active: panel.isSelected(1) }">
+            <a href ng-click="panel.selectTab(1)">Description</a> </li>
+        <li ng-class="{ active: panel.isSelected(2) }">
+            <a href ng-click="panel.selectTab(2)">Specifications</a></li>
+        <li ng-class="{ active: panel.isSelected(3) }">
+            <a href ng-click="panel.selectTab(3)">Reviews</a></li>
+    </ul>
+
+
+
+<div ng-controller="StoreController as store" >
+
+    {{tab}}
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="product in store.products">
+            <h3>{{product.name}}
+            <em class="pull-right">{{product.price | currency}}</em>
+            </h3>
+            <ul class="img-thumbnail clearfix" ng-repeat="image in product.images">
+                <li class="small-image pull-left thumbnail" >
+            <a href="{{image.full}}" ><img style="width: 150px;" src="{{image.thumb}}" alt="{{product.name}} picture"/></a>
+                </li>
+            </ul>
+            <div class="panel" ng-show="panel.isSelected(1)">
+                <h1>Hello</h1>
+                <p>{{product.description}}</p>
+            </div>
+            <div class="panel"  ng-show="panel.isSelected(2)">
+                <h1>You are welcome</h1>
+                <p>Glad to see you</p>
+            </div>
+            <div class="panel"  ng-show="panel.isSelected(3)">
+                <h1>Goodbye</h1>
+                <p>See you soon</p>
+            </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+    <div ng-repeat="product in store.products">
+    <div ng-hide="{{product.soldOut}}">
+        <h1>{{product.name}}</h1>
+        <h2>${{product.price}} </h2>
+        <p>{{product.description}} </p>
+        <button ng-show="{{product.canPurchase}}">Buy</button>
+
+        <div class="panel" ng-show="tab===1">
+            <h1>Hello</h1>
+            <p>{{product.description}}</p>
+        </div>
+        <div class="panel"  ng-show="tab===2">
+            <h1>You are welcome</h1>
+            <p>Glad to see you</p>
+        </div>
+        <div class="panel"  ng-show="tab===3">
+            <h1>Goodbye</h1>
+            <p>See you soon</p>
+        </div>
+        </div>
+    </div>
+</div>
+</section>
+
+
+<footer class="panel panel-default">
+    <div class="panel-body">
+        <p>Aleksey Samoylov<sup>®</sup></p>
+    </div>
+    <div class="panel-footer">
+        <p>All right reserved. +7(922)340-25-27</p>
+    </div>
+</footer>
+
+<!--ANGULAR-->
+<script type="text/javascript" src="angular/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
+<!--OTHER BOOTSTRAP-->
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Google Analytics -->
+<script>
+    (function (b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l;
+        b[l] || (b[l] =
+                function () {
+                    (b[l].q = b[l].q || []).push(arguments)
+                });
+        b[l].l = +new Date;
+        e = o.createElement(i);
+        r = o.getElementsByTagName(i)[0];
+        e.src = 'https://www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', 'UA-74927425-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

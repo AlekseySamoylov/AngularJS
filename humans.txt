@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Aleksey Samoylov
+
+# THANKS
+
+    Mam, Dad and Josephine
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, Java 8
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
